@@ -19,7 +19,7 @@ export default function Register({ navigation }) {
         returnKeyType="next" style={styles.input}
         autoCapitalize="none"
         autoCompleteType="username"
-        textContentType="usera=name"
+        textContentType="username"
         keyboardType="username"
       />
       <TextInput
