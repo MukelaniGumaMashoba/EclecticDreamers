@@ -1,10 +1,31 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, StyleSheet, View, ScrollView, Text, TextInput, email, Button } from 'react-native'
+import {  TextInput, Text, Button, View, TouchableOpacity, StyleSheet } from 'react-native'
 import Logo from '../components/Logo.js';
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from "../../firebase.js"
+
 export default function Register({ navigation }) {
+  const [userData, setUserData] = useState({ email: "", password: "", cpassword: "" })
+
+  const userRegister = () => {
+    // Validation here
+
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.uid)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
+  }
+
   return (
-    <ScrollView>
+    <View style={styles.container}> 
       <Logo />
       <TextInput
         label="Email"
@@ -13,32 +34,39 @@ export default function Register({ navigation }) {
         autoCompleteType="email"
         textContentType="emailAddress"
         keyboardType="email-address"
+        value={userData.email}
+        onChangeText={(text) => { setUserData({ ...userData, email: text }) }}
       />
       <TextInput
-        label="Username"
-        returnKeyType="next" style={styles.input}
-        autoCapitalize="none"
-        autoCompleteType="username"
-        textContentType="username"
-        keyboardType="username"
-      />
-      <TextInput
-        label="Password"
+        placeholder="Password"
         returnKeyType="done" style={styles.input}
         secureTextEntry
+        value={userData.password}
+        onChangeText={(text) => { setUserData({ ...userData, password: text }) }}
       />
-      <Button mode="contained" title='Enter' />
-    </ScrollView>
+      <TextInput
+        placeholder="Confirm Password"
+        returnKeyType="done" style={styles.input}
+        secureTextEntry
+        value={userData.cpassword}
+        onChangeText={(text) => { setUserData({ ...userData, cpassword: text }) }}
+      />
+      <Button mode="contained" title='Enter' onPress={userRegister} />
+
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.link}>Create Account</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    padding: 20
   },
   title: {
     fontSize: 24,
@@ -67,4 +95,4 @@ const styles = {
     color: 'blue',
     marginLeft: 5,
   },
-};
+});

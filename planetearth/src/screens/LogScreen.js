@@ -1,16 +1,34 @@
-import React, { useState } from 'react'
-import { TouchableOpacity, StyleSheet, View, ScrollView, Text, TextInput, email, Button } from 'react-native'
 import Logo from '../components/Logo.js';
-import Register from './RegisterScreen.js';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { auth } from '../../firebase.js';
+import { UserContext } from '../../App.js';
+import React, { useContext, useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { TouchableOpacity, StyleSheet, View, Text, TextInput, Button } from 'react-native'
+
 
 export default function Log({ navigation }) {
+  const { doLogin } = useContext(UserContext);
+
+  const [userData, setUserData] = useState({ email: "", password: "" })
+
+  const userLogin = () => {
+    // Validation here
+
+    signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        doLogin(user)
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
+  }
+
+
   return (
-    <ScrollView>
-
-      <Logo style={styles.ogo}/>
-
+    <View style={styles.container}>
+      <Logo style={styles.ogo} />
       <View>
         <TextInput
           label="Email"
@@ -19,11 +37,15 @@ export default function Log({ navigation }) {
           autoCompleteType="email"
           textContentType="emailAddress"
           keyboardType="email-address"
+          value={userData.email}
+          onChangeText={(text) => { setUserData({ ...userData, email: text }) }}
         />
         <TextInput
           label="Password"
           returnKeyType="done" style={styles.input}
           secureTextEntry
+          value={userData.password}
+          onChangeText={(text) => { setUserData({ ...userData, password: text }) }}
         />
         <View style={styles.forgotPassword}>
           <TouchableOpacity
@@ -32,26 +54,26 @@ export default function Log({ navigation }) {
             <Text style={styles.forgot}>Forgot your password ?</Text>
           </TouchableOpacity>
         </View>
-        <Button mode="contained" title='Log in' />
+        <Button mode="contained" title='Log in' onPress={userLogin} />
         <View style={styles.row}>
           <Text>You do not have an account yet ?</Text>
         </View>
         <View style={styles.row}>
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.link}>Create !</Text>
+            <Text style={styles.link}>Create Account</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   )
 }
 
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    padding: 20
   },
   title: {
     fontSize: 24,
@@ -86,4 +108,4 @@ const styles = {
   ogo: {
     left: 100,
   }
-};
+});
