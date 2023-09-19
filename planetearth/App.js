@@ -61,7 +61,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={DetailsScreen} />
-        <Stack.Screen name="Register" component={RegScreen} />
+        {/* <Stack.Screen name="Register" component={RegScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
