@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { TouchableOpacity, StyleSheet, View, ScrollView, Text, TextInput, email, Button } from 'react-native'
 import Logo from '../components/Logo.js';
+import Register from './RegisterScreen.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function Log({ navigation }) {
   return (
     <ScrollView>
-      {/* <BackButton goBack={navigation.goBack} /> */}
+
       <Logo style={styles.ogo}/>
-      {/* <Text>Hello.</Text> */}
+
       <View>
         <TextInput
           label="Email"
@@ -34,7 +37,7 @@ export default function Log({ navigation }) {
           <Text>You do not have an account yet ?</Text>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={styles.link}>Create !</Text>
           </TouchableOpacity>
         </View>

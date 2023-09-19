@@ -12,6 +12,7 @@ import Log from './src/screens/LogScreen.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Logo from './src/components/Logo.js';
+import Register from './src/screens/RegisterScreen.js';
 import registerNNPushToken from 'native-notify';
 
 
@@ -41,10 +42,20 @@ function HomeScreen({ navigation }) {
 function DetailsScreen({ navigation }) {
   return (
     <ScrollView>
-    <View style={styles.containerT}>
-      <Text style={styles.text}>Welcome to Login</Text>
-    </View>
-    <Log />
+      <View style={styles.containerT}>
+        <Text style={styles.text}>Welcome to Login</Text>
+      </View>
+      <Log />
+    </ScrollView>
+  );
+}
+function RegScreen({ navigation }) {
+  return (
+    <ScrollView>
+      <View style={styles.containerT}>
+        <Text style={styles.text}>Welcome to Sign Up</Text>
+      </View>
+      <Register />
     </ScrollView>
   );
 }
@@ -58,6 +69,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={DetailsScreen} />
+        <Stack.Screen name="Register" component={RegScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -72,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
   },
   header: {
     fontSize: 24,
@@ -89,11 +101,11 @@ const styles = StyleSheet.create({
   },
   containerT: {
     flex: 1,
-    justifyContent: 'center', 
-    alignItems: 'center',     
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    textAlign: 'center',     
+    textAlign: 'center',
     fontSize: 24,
 
   },

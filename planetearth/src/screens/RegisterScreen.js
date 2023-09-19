@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TouchableOpacity, StyleSheet, View, ScrollView, Text, TextInput, email, Button } from 'react-native'
 import Logo from '../components/Logo.js';
 
-export default function Log({ navigation }) {
+export default function Register({ navigation }) {
   return (
     <ScrollView>
       <Logo />
@@ -27,9 +27,11 @@ export default function Log({ navigation }) {
         returnKeyType="done" style={styles.input}
         secureTextEntry
       />
+      <Button mode="contained" title='Enter' />
     </ScrollView>
   )
 }
+
 
 
 const styles = {
