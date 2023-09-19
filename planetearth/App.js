@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
+import {ScrollView,StyleSheet,Text,View,Button,TouchableOpacity,ImageBackground} from 'react-native';
 import Log from './src/screens/LogScreen.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
