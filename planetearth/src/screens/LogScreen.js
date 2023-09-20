@@ -13,6 +13,10 @@ export default function Log({ navigation }) {
 
   const userLogin = () => {
     // Validation here
+    if (!userData.email || !userData.password) {
+      setErrorMessage("Please enter both email and password.");
+      return;
+    }
 
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
@@ -109,3 +113,44 @@ const styles = StyleSheet.create({
     left: 100,
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
