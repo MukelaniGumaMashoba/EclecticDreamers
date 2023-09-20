@@ -4,27 +4,21 @@ import { UserContext } from '../../App';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AccountScreen = () => {
-    const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-    console.log(user);
+  console.log(user);
 
   return (
     <SafeAreaView>
-        
-        <Text>
+
+      <Text>
         AccountScreen
-
-        
-            
-        </Text>
-        <Text>
+      </Text>
+      <Text>
         {user.email}
+      </Text>
 
-
-            
-        </Text>
-        
-        </SafeAreaView>
+    </SafeAreaView>
   )
 }
 
