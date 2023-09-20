@@ -11,6 +11,13 @@ export default function Register({ navigation }) {
 
   const userRegister = () => {
     // Validation here
+    if (!userData.email || !userData.password) {
+      setErrorMessage("Please enter both email and password.");
+      return;
+    }
+    else if(userData.password != userData.cpassword){
+      setErrorMessage('The passwords do not match.');
+    } 
 
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
