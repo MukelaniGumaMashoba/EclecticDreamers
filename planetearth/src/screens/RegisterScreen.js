@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
-import {  TextInput, Text, Button, View, TouchableOpacity, StyleSheet } from 'react-native'
-import Logo from '../components/Logo.js';
-
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
 import { auth } from "../../firebase.js"
+import Logo from '../components/Logo.js';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {  TextInput, Text, Button, View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default function Register({ navigation }) {
   const [userData, setUserData] = useState({ email: "", password: "", cpassword: "" })
 
   const userRegister = () => {
-    // Validation here
+    // Validation for our app PlanetPulses
     if (!userData.email || !userData.password) {
       setErrorMessage("Please enter both email and password.");
       return;
