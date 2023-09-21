@@ -17,6 +17,9 @@ export default function Log({ navigation }) {
       setErrorMessage("Please enter both email and password.");
       return;
     }
+    if (!userData.password){
+      setErrorMessage("Please enter your password");
+      return;}
 
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {

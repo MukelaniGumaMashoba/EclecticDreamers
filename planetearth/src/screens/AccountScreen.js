@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../App';
 import { Text, View, Button, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AuthNavigator from '../navigation/AuthNavigation.js';
 
 const AccountScreen = ({ navigation }) => {
   const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
     setUser(null);
-    navigation.navigate('Log');
+    <AuthNavigator />;
   };
 
   return (
