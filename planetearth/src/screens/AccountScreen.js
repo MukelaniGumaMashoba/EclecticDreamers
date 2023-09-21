@@ -1,8 +1,9 @@
 import { useContext } from 'react';
-import { Text, View } from 'react-native'
 import { UserContext } from '../../App';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, View } from 'react-native'
 import { Button, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const AccountScreen = () => {
   const { user } = useContext(UserContext);
