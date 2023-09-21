@@ -20,6 +20,8 @@ const AccountScreen = ({ navigation }) => {
   );
 };
 
+export default AccountScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountScreen;
+
