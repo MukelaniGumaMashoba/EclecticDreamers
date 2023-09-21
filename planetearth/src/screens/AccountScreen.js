@@ -1,56 +1,36 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../App';
-import { Text, View } from 'react-native'
-import { Button, StyleSheet } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+const AccountScreen = ({ navigation }) => {
+  const { user, setUser } = useContext(UserContext);
 
-const AccountScreen = () => {
-  const { user } = useContext(UserContext);
-
-  console.log(user);
+  const handleLogout = () => {
+    setUser(null);
+    navigation.navigate('Log');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-
-      <Text>
-        AccountScreen
-      </Text>
-      <Text>
-        {user.email}
-      </Text>
-
-      <Button title='LogOut' onPress={() => {UserContext('')}}/>
+      <Text style={styles.title}>AccountScreen</Text>
+      <Text>{user.email}</Text>
+      <Button title="Logout" onPress={handleLogout} />
     </SafeAreaView>
-  )
-}
-
-export default AccountScreen
-
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 20
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  row: {
-    flexDirection: 'row',
-    marginTop: 10,
-  },
-  link: {
-    color: 'blue',
-    marginLeft: 5,
-  },
-  ogo: {
-    left: 100,
-  }
 });
 
-
-//rafce
+export default AccountScreen;
