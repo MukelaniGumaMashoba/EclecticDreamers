@@ -1,5 +1,5 @@
 import registerNNPushToken from 'native-notify';
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './src/navigation/AuthNavigation.js';
 import { AppNavigation } from './src/navigation/AppNavigation.js';
@@ -25,7 +25,8 @@ function App() {
   }, [user])
 
   const doLogout = () => {
-    setuser(null)
+    setuser(null);
+    signOut(auth)
   }
   const doLogin = (data) => {
     setuser(data)
