@@ -8,18 +8,23 @@ import { TouchableOpacity, StyleSheet, View, Text, TextInput, Button } from 'rea
 
 export default function Log({ navigation }) {
   const { doLogin } = useContext(UserContext);
-
+  const [error, setErrorMessage] = useState('');
   const [userData, setUserData] = useState({ email: "", password: "" })
 
   const userLogin = () => {
-    // Validation here
-    if (!userData.email || !userData.password) {
-      setErrorMessage("Please enter both email and password.");
+    setErrorMessage('');
+    if (!userData.email && !userData.password) {
+      setErrorMessage("Email/Password Rquired..");
       return;
     }
-    if (!userData.password){
-      setErrorMessage("Please enter your password");
-      return;}
+    else if (!userData.email) {
+      setErrorMessage("Email Rquired...");
+      return;
+    }
+    else if (!userData.password) {
+      setErrorMessage("Password required...");
+      return;
+    }
 
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
@@ -36,8 +41,11 @@ export default function Log({ navigation }) {
   return (
     <View style={styles.container}>
       <Logo style={styles.ogo} />
-      <View>
+      <View style={styles.new}>
+        <Text style={styles.title}>Welcome Back</Text>
+
         <TextInput
+          placeholder='Email'
           label="Email"
           returnKeyType="next" style={styles.input}
           autoCapitalize="none"
@@ -48,12 +56,16 @@ export default function Log({ navigation }) {
           onChangeText={(text) => { setUserData({ ...userData, email: text }) }}
         />
         <TextInput
+          placeholder='Password'
           label="Password"
           returnKeyType="done" style={styles.input}
           secureTextEntry
           value={userData.password}
           onChangeText={(text) => { setUserData({ ...userData, password: text }) }}
         />
+
+        {error !== '' && <Text style={styles.error}>{error}</Text>}
+
         <View style={styles.forgotPassword}>
           <TouchableOpacity
             onPress={() => navigation.navigate('ResetPasswordScreen')}
@@ -80,12 +92,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    padding: 20
+    padding: 20,
+    fontFamily: 'Roboto',
+    backgroundColor: 'lightgreen'
   },
   title: {
-    fontSize: 24,
+    fontSize: 14,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   input: {
     marginBottom: 16,
@@ -114,6 +128,16 @@ const styles = StyleSheet.create({
   },
   ogo: {
     left: 100,
+  },
+  new: {
+    borderWidth: 1,
+    padding: 23,
+    borderRadius: 23,
+    backgroundColor: 'white'
+  },
+  error: {
+    color:'red',
+    textAlign: 'center',
   }
 });
 
