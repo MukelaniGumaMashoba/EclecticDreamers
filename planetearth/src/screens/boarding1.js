@@ -3,13 +3,13 @@ import { Text, Image, StyleSheet, SafeAreaView, TouchableOpacity, View } from 'r
 
 const Boarding1 = ({ navigation }) => {
     return (
-        <View>
-            {/* <Image source={require('../../assets/Onboarding/Board1.png')} style={styles.image} /> */}
+        <View style={styles.page}>
+            <Image source={require('../assets/splash2.jpg')} style={styles.image} />
             <View style={styles.container}>
-                <Text style={styles.antext}>Book a Local</Text>
-                <Text>You can now book pravite city tours with locals on the top go experience a new place like never before</Text>
+                <Text style={styles.antext}>Welcome</Text>
+                <Text>You can now start by Allowing Notifications and learn more on how to use renewable resources available all times and make a change in planet earth with reminders</Text>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Boarding2')}>
-                    <Text style={styles.texts}>Next</Text>
+                    <Text style={styles.texts}>Allow Notifications</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -25,15 +25,22 @@ export default Boarding1
 
 
 const styles = StyleSheet.create({
+    page: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
     image: {
         borderRadius: 12,
-        width: 365,
-        height: 480,
+        width: 338,
+        height: 450,
         marginBottom: 20,
         marginTop: 25,
         justifyContent: 'center',
         alignItems: 'center',
+        margin: 10,
         backgroundColor: 'black',
+        borderColor: 'lightgreen',
+        borderWidth: 1,
     },
     btn: {
         backgroundColor: 'black',
@@ -45,10 +52,11 @@ const styles = StyleSheet.create({
     },
     texts: {
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
     container: {
-        backgroundColor: 'grey',
+        backgroundColor: 'lightgreen',
         borderRadius: 23,
         padding: 23,
         margin: 12,

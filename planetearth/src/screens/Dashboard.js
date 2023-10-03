@@ -1,8 +1,17 @@
 import React from 'react';
 import Menu from '../components/menu';
 import { Text, View, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { ScrollView } from 'react-native';
+import News from '../components/news';
+
+const Newspaper = () => {
+  return (
+    <View>
+      <News />
+    </View>
+  );
+}
 
 export default function Dashboard({ navigation }) {
   return (
@@ -11,14 +20,24 @@ export default function Dashboard({ navigation }) {
       <Text style={styles.welcomeText}>PlanetPulse</Text>
       <Text style={styles.txt}>Know What Happening Around You All The Time.!</Text>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <TouchableOpacity style={styles.top}>
-          <Text>Globalization</Text>
-          <Text>Explore more about Globalization in this application and find ways to save...</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.top}>
-          <Text>Globalization</Text>
-          <Text>Explore more about Globalization in this application and find ways to save...</Text>
-        </TouchableOpacity>
+        <ImageBackground
+          source={require('../assets/information.jpg')}
+          style={styles.backgroundImage}
+        >
+          <TouchableOpacity style={styles.top}>
+            <Text style={styles.txt2}>Global Warming Alert: </Text>
+            <Text style={styles.txt2}>Rising greenhouse gases are heating our planet, melting polar ice and threatening coastal cities.</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+        <ImageBackground
+          source={require('../assets/globe.png')}
+          style={styles.backgroundImage}
+        >
+          <TouchableOpacity style={styles.top}>
+            <Text style={styles.txt2}>Climate Crisis Warning:</Text>
+            <Text style={styles.txt2}> Extreme weather events intensify as global temperatures soar, endangering communities worldwide.</Text>
+          </TouchableOpacity>
+        </ImageBackground>
       </ScrollView>
 
       <View>
@@ -27,7 +46,27 @@ export default function Dashboard({ navigation }) {
       </View>
 
       <View>
-        <Text style={styles.menu}>Recommended</Text>
+        <Text style={styles.menu}>Trending News</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <TouchableOpacity onPress={Newspaper}>
+            <Image
+              source={require('../assets/climate_change.jpg')}
+              style={styles.top2}
+            />
+            <Text style={styles.txt3}>Climate Crisis Warning:</Text>
+            {/* <Text style={styles.txt2}> Extreme weather events intensify as global temperatures soar, endangering communities worldwide.</Text> */}
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={Newspaper}>
+            <Image
+              source={require('../assets/news.jpg')}
+              style={styles.top2}
+            />
+            <Text style={styles.txt3}>Daily New To Keep you updated all times</Text>
+            {/* <Text style={styles.txt2}> Extreme weather events intensify as global temperatures soar, endangering communities worldwide.</Text> */}
+          </TouchableOpacity>
+
+        </ScrollView>
       </View>
     </View>
   );
@@ -51,22 +90,58 @@ const styles = StyleSheet.create({
   },
   top: {
     borderRadius: 12,
-    backgroundColor: 'purple',
-    width: 240,
-    height: 130,
-    marginBottom: 23,
-    padding: 10,
-    margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    padding: 15,
+    height: '100%',
+    width: '100%'
   },
   menu: {
     fontWeight: 'bold',
     fontSize: 16,
   },
   txt: {
-    fontSize : 22,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 15,
+  },
+  backgroundImage: {
+    // flex: 1,
+    // borderRadius: 12,
+    // resizeMode: 'cover',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    marginRight: 15,
+    marginBottom: 15,
+    borderColor: 'lightgreen',
+    borderWidth: 2,
+    width: 250,
+    height: 160,
+  },
+  txt2: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  txt3: {
+    color: 'black',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  top2: {
+    borderRadius: 12,
+    width: 250,
+    height: 153,
+    marginBottom: 23,
+    padding: 10,
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderColor: 'lightgreen',
+    borderWidth: 2,
+    padding: 15,
   },
 });
