@@ -22,6 +22,9 @@ function MainApp({ navigation }) {
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('')}>
+            <Text style={styles.buttonText}>BACK</Text>
+          </TouchableOpacity>
         <View >
           <View style={styles.centeredContent}>
             <Image source={iconImage} style={styles.icon} />
