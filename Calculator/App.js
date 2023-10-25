@@ -56,7 +56,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Main App" component={MainApp} />
+        <Stack.Screen name="Calculator" component={MainApp} />
 
         <Stack.Screen name="Energy Usage" options={{ title: 'Building Form' }}>
           {() => <BuildingForm onSubmit={handleFormDataSubmit} />} 
