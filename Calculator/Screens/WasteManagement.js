@@ -147,7 +147,7 @@ const WasteForm = ({ onSubmit }) => {
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.backStyle} onPress={() => navigation.navigate('Main App')}>
+          <TouchableOpacity style={styles.backStyle} onPress={() => navigation.navigate('Calculator')}>
             <Text style={styles.buttonText}>BACK</Text>
           </TouchableOpacity>
           <Image source={iconImage} style={styles.icon} />
