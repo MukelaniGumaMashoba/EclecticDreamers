@@ -5,7 +5,7 @@ import WasteForm from './Screens/WasteManagement';
 import EquipmentForm from './Screens/EquipmentAndMachinery';
 import VehicleForm from './Screens/Vehicle';
 import BuildingForm from './Screens/EnergyUsage';
-import MainApp from './Screens/Main';
+import MainApp from './Screens/Calculator';
 import Report from './Screens/Report';
 
 const Stack = createStackNavigator();
